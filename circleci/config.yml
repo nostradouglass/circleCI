@@ -10,9 +10,7 @@ jobs:
 
     steps:
       - checkout
-      - run:
-          name: install
-          command: npm install
+      - node/install-packages
       - run:
           name: test
           command: npm test
