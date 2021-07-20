@@ -1,0 +1,33 @@
+version: "3"
+services: 
+    nginx-main:
+        build:
+            context: ./nginx
+            dockerfile: Dockerfile.dev
+        ports:
+            - "8080:80"
+        restart: always
+        depends_on: 
+            - api-server
+            - front-simple
+        links:
+            - api-server
+            - front-simple
+    api-server:
+        build: 
+            context: ./server
+            dockerfile: Dockerfile.dev
+        # ports: 
+        #     - '4000:4000'
+        volumes: 
+            - /app/node_modules
+            - ./server:/app
+    front-simple:
+        build:
+            context: ./front-simple
+            dockerfile: Dockerfile.dev
+        # ports:
+        #     - "3000:3000"
+        volumes: 
+            - /app/node_modules
+            - ./front-simple:/app
