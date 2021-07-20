@@ -1,0 +1,18 @@
+version: 2.1
+jobs:
+  build:
+    working_directory: /front-simple
+    docker:
+      - image: kellydouglass/front-simple
+      auth:
+        username: $DOCKERHUB_USER 
+        password: $DOCKERHUB_PASS
+
+    steps:
+      - checkout
+      - run:
+          name: install
+          command: npm install
+      - run:
+          name: test
+          command: npm test
