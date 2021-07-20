@@ -8,6 +8,7 @@ workflows:
   sample:
     jobs:
       - node/test:
+          app-dir: /front-simple
           version: '15.1'
           # This is the node version to use for the `cimg/node` tag
           # Relevant tags can be found on the CircleCI Developer Hub
